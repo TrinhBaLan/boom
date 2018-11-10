@@ -5,3 +5,4 @@ Bomb.java -107
 		   -88 đang comment để test
 bomb_audio
 bomber.java -90 giá trị đúng là -1, để 1 để test
+AI 
