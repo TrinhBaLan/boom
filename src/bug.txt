@@ -1,0 +1,7 @@
+Flame.java - 83  đang comment để test
+			-112
+Bomber.java -89
+Bomb.java -107
+		   -88 đang comment để test
+bomb_audio
+bomber.java -90 giá trị đúng là -1, để 1 để test
