@@ -6,3 +6,4 @@ Bomb.java -107
 bomb_audio
 bomber.java -90 giá trị đúng là -1, để 1 để test
 AI 
+Portal.java -15
