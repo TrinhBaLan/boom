@@ -177,7 +177,7 @@ public class FileLevelLoader extends LevelLoader {
 		int pos = xB + yB * _width;
 		_board.addEntity(
 				pos, new LayeredEntity(xB, yB, 
-					 new Portal(xB, yB, Sprite.portal),
+					 new Portal(xB, yB, Sprite.portal,_board),
 					 new Brick(xB, yB, Sprite.brick)
 				)
 		);
