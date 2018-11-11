@@ -1,9 +1,11 @@
 package bomberman.entities.tile.destroyable;
 
 import bomberman.entities.Entity;
+import bomberman.entities.bomb.Flame;
 import bomberman.entities.bomb.FlameSegment;
 import bomberman.entities.tile.Tile;
 import bomberman.graphics.Sprite;
+import bomberman.*;
 
 /**
  * Đối tượng cố định có thể bị phá hủy
@@ -38,7 +40,7 @@ public class DestroyableTile extends Tile {
 	@Override
 	public boolean collide(Entity e) {
 		// TODO: xử lý khi va chạm với Flame
-		if( e instanceof FlameSegment) {
+		if( e instanceof Flame) {
 			destroy();
 		}
 		return false;
