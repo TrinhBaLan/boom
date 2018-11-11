@@ -4,7 +4,7 @@ Bomber.java -89
 Bomb.java -107
 Bomb.java -88 đang comment để test
 
-bomb_audio
+
 bomber.java -90 giá trị đúng là -1, để 1 để test
 AI 
 
@@ -12,3 +12,6 @@ Bomber.java  thêm chức năng trừ lives khi chết
 Game.java -30 đang set thời gian = 9999999 để test
 
 bomb.java - 15 test để 0 
+
+message 
+bomb_audio
