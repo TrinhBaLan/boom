@@ -115,13 +115,15 @@ public class Bomber extends Character {
     public void kill() {
         if (!_alive) return;
         _alive = false;
+        _board.addLives(-1);
     }
 
     @Override
     protected void afterKill() {
         if (_timeAfter > 0) --_timeAfter;
         else {
-            _board.endGame();
+        	if( _board.getLives() == 0) _board.endGame();
+        	else _board.loadLevel(_board.getLevels());
         }
     }
 
@@ -171,7 +173,7 @@ public class Bomber extends Character {
     	
     	for( int i = 0; i< 4; i++) {
     		double xt = (x + i % 2 * 12)     / Game.TILES_SIZE; //tiles_size = 16 pixels
-    		double yt = (y + i / 2 * 12 -14) / Game.TILES_SIZE;
+    		double yt = (y + i / 2 * 13 -14) / Game.TILES_SIZE;
     		System.out.println(xt+" "+ yt);
     		Entity a = _board.getEntityAt(xt, yt);
     		if( !a.collide(this)) return false;
