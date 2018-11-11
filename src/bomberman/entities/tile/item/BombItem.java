@@ -15,6 +15,7 @@ public class BombItem extends Item {
 	public boolean collide(Entity e) {
 		// TODO: xử lý Bomber ăn Item
 		if( e instanceof Bomber) {
+			this.remove();
 			Game.addBombRate(1);
 			return true;
 		}
