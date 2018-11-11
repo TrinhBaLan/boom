@@ -28,14 +28,15 @@ public class Board implements IRender {
 	protected Screen _screen;
 	
 	public Entity[] _entities;
-	public List<Character> _characters = new ArrayList<>();
-	protected List<Bomb> _bombs = new ArrayList<>();
-	private List<Message> _messages = new ArrayList<>();
+	public List<Character> _characters = new ArrayList<Character>();
+	protected List<Bomb> _bombs = new ArrayList<Bomb>();
+	private List<Message> _messages = new ArrayList<Message>();
 	
 	private int _screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
 	
 	private int _time = Game.TIME;
 	private int _points = Game.POINTS;
+	private int _lives = Game.LIVES;
 	
 	public Board(Game game, Keyboard input, Screen screen) {
 		_game = game;
@@ -88,6 +89,7 @@ public class Board implements IRender {
 	}
 	
 	public void nextLevel() {
+		addLives(1);
 		loadLevel(_levelLoader.getLevel() + 1);
 	}
 	
@@ -352,6 +354,16 @@ public class Board implements IRender {
 
 	public int getHeight() {
 		return _levelLoader.getHeight();
+	}
+	
+	public int getLives() {
+		return this._lives;
+	}
+	public void addLives(int i) {
+		this._lives += i;
+	}
+	public int getLevels() {
+		return _levelLoader.getLevel();
 	}
 	
 }
