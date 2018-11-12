@@ -198,7 +198,7 @@ public class Bomber extends Character {
         // TODO: xử lý va chạm với Flame
         // TODO: xử lý va chạm với Enemy
     	
-    	if (e instanceof FlameSegment ) {
+    	if (e instanceof Flame ) {
     		this.kill();
     		return false;
     	}
