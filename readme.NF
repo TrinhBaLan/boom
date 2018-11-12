@@ -1,3 +1,8 @@
+@update 12/11
+Enemy.java --101 thêm chạm flame thì chết
+Bomber.java -- 178 chạm quái đã chết
+
+
 @ update 11/11
 BombItem.java    --18 sửa ăn item xong thì item mất
 FlameItem.java	--18 sửa ăn item xong thì item mất
