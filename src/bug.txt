@@ -6,13 +6,14 @@ Bomb.java -88 đang comment để test
 
 
 bomber.java -90 giá trị đúng là -1, để 1 để test
-AI 
+ 
 
 Bomber.java  thêm chức năng trừ lives khi chết
 Game.java -30 đang set thời gian = 9999999 để test
 
 bomb.java - 15 test để 0 
 
+AI
 message 
 bomb_audio
 -- enemy chạm flame chưa chết
