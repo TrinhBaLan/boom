@@ -10,6 +10,7 @@ bomber.java -90
 Game.java -30 đang set thời gian = 9999999 để test
 
 bomb.java - 15 
+enemy.java --- canMove, Move, calculateMove
 
 AI
 message 
