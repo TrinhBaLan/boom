@@ -15,3 +15,4 @@ bomb.java - 15 test để 0
 
 message 
 bomb_audio
+-- enemy chạm flame chưa chết
