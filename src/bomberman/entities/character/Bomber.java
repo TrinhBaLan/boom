@@ -136,25 +136,25 @@ public class Bomber extends Character {
     	if( _input.down || _input.left ||_input.right|| _input.up) {
 	    	if( _input.down ) { //coordinate : pixel
 	    		_direction =2;
-	    		System.out.println(this._x+" "+this._y);
+//	    		System.out.println(this._x+" "+this._y);
 	    		move(this._x,this._y+step);
 	    	}
 	    	
 	    	if( _input.up) {
 	    		_direction = 0;
-	    		System.out.println(this._x+" "+this._y);
+//	    		System.out.println(this._x+" "+this._y);
 	    		move(this._x, this._y -step);
 	    	}
 	    	
 	    	if( _input.right) {
 	    		_direction = 1;
-	    		System.out.println(this._x+" "+this._y);
+//	    		System.out.println(this._x+" "+this._y);
 	    		move(this._x+step, this._y);
 	    	}
 	    	
 	    	if( _input.left) {
 	    		_direction = 3;
-	    		System.out.println(this._x+" "+this._y);
+//	    		System.out.println(this._x+" "+this._y);
 	    		move(this._x-step, this._y);
 	    	} 
 	    	_moving = true;
@@ -174,9 +174,10 @@ public class Bomber extends Character {
     	for( int i = 0; i< 4; i++) {
     		double xt = (x + i % 2 * 12)     / Game.TILES_SIZE; //tiles_size = 16 pixels
     		double yt = (y + i / 2 * 13 -14) / Game.TILES_SIZE;
-    		System.out.println(xt+" "+ yt);
-    		Entity a = _board.getEntityAt(xt, yt);
+ //   		System.out.println(xt+" "+ yt);
+    		Entity a = _board.getEntity(xt, yt,null);
     		if( !a.collide(this)) return false;
+    		if( a instanceof Enemy) System.out.println(1);
     	}
 		
 		return true;
@@ -199,11 +200,11 @@ public class Bomber extends Character {
         // TODO: xử lý va chạm với Enemy
     	
     	if (e instanceof Flame ) {
-    		this.kill();
+    		kill();
     		return false;
     	}
     	if(e instanceof Enemy) {
-    		this.kill();
+    		kill();
     		return true;
     	}
         return true;
