@@ -1,5 +1,3 @@
-Flame.java - 83  đang comment để test
-		-112
 Bomber.java -89
 Bomb.java -107
 Bomb.java -88 
