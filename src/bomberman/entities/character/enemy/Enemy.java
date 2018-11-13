@@ -8,6 +8,8 @@ import bomberman.entities.bomb.Flame;
 import bomberman.entities.character.Bomber;
 import bomberman.entities.character.Character;
 import bomberman.entities.character.enemy.ai.AI;
+import bomberman.entities.tile.Grass;
+import bomberman.entities.tile.Wall;
 import bomberman.graphics.Screen;
 import bomberman.graphics.Sprite;
 import bomberman.level.Coordinates;
@@ -79,19 +81,56 @@ public abstract class Enemy extends Character {
 		// TODO: sử dụng canMove() để kiểm tra xem có thể di chuyển tới điểm đã tính toán hay không
 		// TODO: sử dụng move() để di chuyển
 		// TODO: nhớ cập nhật lại giá trị cờ _moving khi thay đổi trạng thái di chuyển
+		
+		if( _steps <= 0) {
+			_direction = _ai.calculateDirection();
+			_steps = MAX_STEPS;
+		}
+		if(_direction == 0) {	
+			move(_x, _y - _speed);
+		}
+		if(_direction == 1) {
+			move(_x + _speed, _y);
+			
+		}
+		if(_direction == 2) {
+			move(_x, _y + _speed);
+		}
+		if(_direction == 3) {
+			move(_x - _speed, _y);
+		}
+		
 	}
 	
 	@Override
 	public void move(double xa, double ya) {
-		if(!_alive) return;
-		_y += ya;
-		_x += xa;
+//		if(!_alive) return;
+//		_y += ya;
+//		_x += xa;
+		if( !_alive) return;
+		else if( this.canMove(xa, ya)) {
+				_x = xa;
+				_y = ya;
+		}
 	}
 	
 	@Override
 	public boolean canMove(double x, double y) {
-		// TODO: kiểm tra có đối tượng tại vị trí chuẩn bị di chuyển đến và có thể di chuyển tới đó hay không
-		return false;
+		// TODO: kiểm tra có đối tượng tại vị trí chuẩn bị di chuyển đến và có thể di chuyển tới đó hay không		
+		//return false;
+		//return true;
+    	for( int i = 0; i< 4; i++) {
+    		double xt = (x + i % 2 * 14)     / Game.TILES_SIZE; //tiles_size = 16 pixels
+    		double yt = (y + i / 2 * 14 -14) / Game.TILES_SIZE;
+    		//System.out.println(xt+" "+ yt);
+    		Entity a = _board.getEntity(xt, yt,null);
+    		if( !a.collide(this)) {
+    			_steps = 0;
+    			return false;
+    		}
+    	}
+		_steps -= 1;
+		return true;
 	}
 
 	@Override
