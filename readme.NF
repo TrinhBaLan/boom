@@ -5,6 +5,7 @@ Item.java --7 thêm isRemoved
 bombItem.java, FlameItem.java, SpeedItem.java ---15 sửa collide
 Flame.java --83 gỡ comment
 Ai ---- thêm tìm đường cho quái
+---update lại file nhạc
 
 
 @update 12/11
