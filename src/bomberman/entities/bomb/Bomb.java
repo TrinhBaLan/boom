@@ -12,7 +12,7 @@ import bomberman.level.*;
 
 public class Bomb extends AnimatedEntity {
 
-	protected double _timeToExplode = 60 * 2 ; //1 second
+	protected double _timeToExplode = 60 * 1 ; //1 second
 	public int _timeAfter = 20;
 	
 	protected Board _board;
@@ -86,8 +86,8 @@ public class Bomb extends AnimatedEntity {
 			_flames[i] = new Flame( (int)_x, (int) _y, i, Game.getBombRadius(), _board);
 		}
 		
-//		Character c = _board.getCharacterAtExcluding((int)_x,(int) _y);
-//		if( c != null ) c.kill();
+		Character c = _board.getCharacterAtExcluding((int)_x,(int) _y);
+		if( c != null ) c.kill();
 		
 		
 	}
@@ -107,14 +107,13 @@ public class Bomb extends AnimatedEntity {
 	@Override
 	public boolean collide(Entity e) { // va chạm
         // TODO: xử lý khi Bomber đi ra sau khi vừa đặt bom (_allowedToPassThru)
-        // TODO: xử lý va chạm với Flame của Bomb khác
+        // TODO: xử lý va chạm với Flame của Bomb khác	
 		
 		if(e instanceof Flame) {
 			_timeToExplode= 0;
 			return true;
-		}
-		
-		
-		return false;
+		}		
+
+		return true;
 	}
 }
