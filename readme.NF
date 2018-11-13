@@ -1,3 +1,12 @@
+@update 13/11
+Bomb.java --119 cho bomber đi qua bom
+Enemy.java --128--132 thêm căn lại đường đi cho enemy
+Item.java --7 thêm isRemoved
+bombItem.java, FlameItem.java, SpeedItem.java ---15 sửa collide
+Flame.java --83 gỡ comment
+Ai ---- thêm tìm đường cho quái
+
+
 @update 12/11
 Enemy.java --101 thêm chạm flame thì chết
 Bomber.java -- 178 chạm quái đã chết
