@@ -1,11 +1,13 @@
 package bomberman.entities.bomb;
 
+import bomb_audio.bom_fire;
 import bomberman.Board;
 import bomberman.Game;
 import bomberman.entities.AnimatedEntity;
 import bomberman.entities.Entity;
 import bomberman.entities.character.Bomber;
 import bomberman.entities.character.Character;
+import bomberman.entities.character.enemy.Enemy;
 import bomberman.graphics.Screen;
 import bomberman.graphics.Sprite;
 import bomberman.level.*;
@@ -19,6 +21,7 @@ public class Bomb extends AnimatedEntity {
 	protected Flame[] _flames = null;
 	protected boolean _exploded = false;
 	protected boolean _allowedToPassThru = true;
+	bom_fire bf = new bom_fire();
 	
 	public Bomb(int x, int y, Board board) {
 		_x = x;
@@ -89,7 +92,7 @@ public class Bomb extends AnimatedEntity {
 		Character c = _board.getCharacterAtExcluding((int)_x,(int) _y);
 		if( c != null ) c.kill();
 		
-		
+		bf.play(false);
 	}
 	
 	public FlameSegment flameAt(int x, int y) {
@@ -112,7 +115,8 @@ public class Bomb extends AnimatedEntity {
 		if(e instanceof Flame) {
 			_timeToExplode= 0;
 			return true;
-		}		
+		}
+		if( e instanceof Enemy) return false;
 
 		return true;
 	}
