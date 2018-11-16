@@ -1,12 +1,14 @@
 package bomberman.entities.tile.item;
 
+import bomb_audio.item_get;
 import bomberman.Game;
 import bomberman.entities.Entity;
 import bomberman.entities.character.Bomber;
 import bomberman.graphics.Sprite;
 
 public class BombItem extends Item {
-
+	item_get ig = new item_get();
+	
 	public BombItem(int x, int y, Sprite sprite) {
 		super(x, y, sprite);
 	}
@@ -19,6 +21,7 @@ public class BombItem extends Item {
 				this.remove();
 				isRemoved = true;
 				Game.addBombRate(1);
+				ig.play(false);
 			}
 			return true;
 		}
