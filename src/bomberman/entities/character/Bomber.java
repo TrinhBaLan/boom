@@ -10,6 +10,8 @@ import bomberman.entities.character.enemy.Enemy;
 import bomberman.entities.tile.Grass;
 import bomberman.entities.tile.Wall;
 import bomberman.entities.tile.destroyable.Brick;
+import bomberman.entities.tile.item.FlameItem;
+import bomberman.entities.tile.item.Item;
 import bomberman.graphics.Screen;
 import bomberman.graphics.Sprite;
 import bomberman.input.Keyboard;
@@ -19,11 +21,17 @@ import bomberman.level.LevelLoader;
 import java.util.Iterator;
 import java.util.List;
 
-public class Bomber extends Character {
+import bomb_audio.bom_set;
+import bomb_audio.life_lost;
+import bomb_audio.player_walk;
 
+
+public class Bomber extends Character {
     private List<Bomb> _bombs;
     protected Keyboard _input;
-
+    player_walk pw = new player_walk();
+    bom_set     bs = new bom_set();
+    life_lost lf = new life_lost();
     /**
      * nếu giá trị này < 0 thì cho phép đặt đối tượng Bomb tiếp theo,
      * cứ mỗi lần đặt 1 Bomb mới, giá trị này sẽ được reset về 0 và giảm dần trong mỗi lần update()
@@ -38,7 +46,7 @@ public class Bomber extends Character {
     }
 
     @Override
-    public void update() {
+    public void update(){
         clearBombs();
         if (!_alive) {
             afterKill();
@@ -93,8 +101,8 @@ public class Bomber extends Character {
 
     protected void placeBomb(int x, int y) {
         // TODO: thực hiện tạo đối tượng bom, đặt vào vị trí (x, y)
-    	_board.addBomb(new Bomb(x, y, _board));   	
-    	    
+    	_board.addBomb(new Bomb(x, y, _board));
+    	bs.play(false);
     }
 
     private void clearBombs() {
@@ -114,7 +122,8 @@ public class Bomber extends Character {
     @Override
     public void kill() {
         if (!_alive) return;
-        _alive = false;
+        _alive = false; 
+        lf.play(false);
         _board.addLives(-1);
     }
 
@@ -136,48 +145,38 @@ public class Bomber extends Character {
     	if( _input.down || _input.left ||_input.right|| _input.up) {
 	    	if( _input.down ) { //coordinate : pixel
 	    		_direction =2;
-//	    		System.out.println(this._x+" "+this._y);
 	    		move(this._x,this._y+step);
 	    	}
 	    	
 	    	if( _input.up) {
 	    		_direction = 0;
-//	    		System.out.println(this._x+" "+this._y);
 	    		move(this._x, this._y -step);
 	    	}
 	    	
 	    	if( _input.right) {
 	    		_direction = 1;
-//	    		System.out.println(this._x+" "+this._y);
 	    		move(this._x+step, this._y);
 	    	}
 	    	
 	    	if( _input.left) {
 	    		_direction = 3;
-//	    		System.out.println(this._x+" "+this._y);
 	    		move(this._x-step, this._y);
 	    	} 
 	    	_moving = true;
+	    	pw.play(false);
     	}
-    	else _moving = false;
-
-
-
-    	
+    	else _moving = false;    	
     }
 
     @Override
     public boolean canMove(double x, double y) {
-        // TODO: kiểm tra có đối tượng tại vị trí chuẩn bị di chuyển đến và có thể di chuyển tới đó hay không
-
-    	
+        // TODO: kiểm tra có đối tượng tại vị trí chuẩn bị di chuyển đến và có thể di chuyển tới đó hay không	
     	for( int i = 0; i< 4; i++) {
     		double xt = (x + i % 2 * 12)     / Game.TILES_SIZE; //tiles_size = 16 pixels
     		double yt = (y + i / 2 * 13 -14) / Game.TILES_SIZE;
  //   		System.out.println(xt+" "+ yt);
     		Entity a = _board.getEntity(xt, yt,null);
     		if( !a.collide(this)) return false;
-    		if( a instanceof Enemy) System.out.println(1);
     	}
 		
 		return true;
