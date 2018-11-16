@@ -1,3 +1,10 @@
+HẾT FILE ĐỂ LOAD LEVEL THÌ LỖI ~
+
+CHƯA CÓ MENU GAME, CHƯA CÓ FRAME KHI CHƠI THẮNG
+
+
+
+
 Bomber.java -89
 Bomb.java -107
 Bomb.java -88 
