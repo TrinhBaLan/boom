@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-
+import bomb_audio.*;
 /**
  * Tạo vòng lặp cho game, lưu trữ một vài tham số cấu hình toàn cục,
  * Gọi phương thức render(), update() cho tất cả các entity
@@ -27,11 +27,11 @@ public class Game extends Canvas {
 	private static final int BOMBRADIUS = 1;
 	private static final double BOMBERSPEED = 1.0;
 	
-	public static final int TIME = 99999999;  // thời gian màn chơi
+	public static final int TIME = 200;  // thời gian màn chơi
 	public static final int POINTS = 0;
 	public static final int LIVES = 3;
 	
-	protected static int SCREENDELAY = 1;
+	protected static int SCREENDELAY = 3;
 
 	protected static int bombRate = BOMBRATE;
 	protected static int bombRadius = BOMBRADIUS;
@@ -50,6 +50,8 @@ public class Game extends Canvas {
 	
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+	start _start = new start();
+	stage_theme st = new stage_theme();
 	
 	public Game(Frame frame) {
 		_frame = frame;
@@ -109,9 +111,9 @@ public class Game extends Canvas {
 		_board.update();
 	}
 	
-	public void start() {
+	public void start(){		
+		st.play(true);
 		_running = true;
-		
 		long  lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		final double ns = 1000000000.0 / 60.0; //nanosecond, 60 frames per second
@@ -119,7 +121,8 @@ public class Game extends Canvas {
 		int frames = 0;
 		int updates = 0;
 		requestFocus();
-		while(_running) {
+
+		while(_running) { 			
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
