@@ -1,3 +1,18 @@
+@update 16/11
+bomb.java --117 cho bomber đi qua, không cho quái đi qua
+bomber.java -- thêm sound put boom
+bomber.java -- thêm sound khi bomber di chuyển
+bomber.java -- thêm sound khi bomber chết
+
+bomb.java -- thêm sound khi bom nổ
+
+bombitem.java	thêm sound khi ăn item
+flameitem.java   thêm sound khi ăn item
+speeditem.java   thêm sound khi ăn item
+
+game.java -- thêm background sound
+
+
 @update 13/11
 Bomb.java --119 cho bomber đi qua bom
 Enemy.java --128--132 thêm căn lại đường đi cho enemy
