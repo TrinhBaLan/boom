@@ -37,7 +37,9 @@ public class Game extends Canvas {
 	protected static int bombRadius = BOMBRADIUS;
 	protected static double bomberSpeed = BOMBERSPEED;
 	
+	public static final int numberOfLevel = 1; // số lượng màn chơi hiện tại
 	
+	 
 	protected int _screenDelay = SCREENDELAY;
 	
 	private Keyboard _input;

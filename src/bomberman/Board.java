@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import bomb_audio.ending_sound;
+import bomb_audio.game_over;
+
 /**
  * Quản lý thao tác điều khiển, load level, render các màn hình của game
  */
@@ -32,11 +35,13 @@ public class Board implements IRender {
 	protected List<Bomb> _bombs = new ArrayList<Bomb>();
 	private List<Message> _messages = new ArrayList<Message>();
 	
-	private int _screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
+	private int _screenToShow = -1; //1:gameOVER, 2:changelevel, 3:paused, 4:winGAME
 	
 	private int _time = Game.TIME;
 	private int _points = Game.POINTS;
 	private int _lives = Game.LIVES;
+	
+	
 	
 	public Board(Game game, Keyboard input, Screen screen) {
 		_game = game;
@@ -89,8 +94,11 @@ public class Board implements IRender {
 	}
 	
 	public void nextLevel() {
-		addLives(1);
-		loadLevel(_levelLoader.getLevel() + 1);
+		if( _levelLoader.getLevel() == _game.numberOfLevel) winGame();
+		else {
+			addLives(1);
+			loadLevel(_levelLoader.getLevel() + 1);	
+		}
 	}
 	
 	public void loadLevel(int level) {
@@ -121,6 +129,18 @@ public class Board implements IRender {
 		_screenToShow = 1;
 		_game.resetScreenDelay();
 		_game.pause();
+		_game.st.stop();
+		game_over go = new game_over();
+		go.play(false);
+	}
+	
+	public void winGame() {
+		_screenToShow = 4;
+		_game.resetScreenDelay();
+		_game.pause();
+		_game.st.stop();
+		ending_sound es = new ending_sound();
+		es.play(false);
 	}
 	
 	public boolean detectNoEnemies() {
@@ -143,6 +163,9 @@ public class Board implements IRender {
 				break;
 			case 3:
 				_screen.drawPaused(g);
+				break;
+			case 4:
+				_screen.drawWinGame(g, _points);
 				break;
 		}
 	}
