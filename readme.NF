@@ -1,3 +1,11 @@
+@update 17/11
+game.java  board.java -- thêm ending frame
+game.java -- thêm max_level
+board.java -- thêm ending sound khi win game
+board.java -- thêm ending sound khi thua game
+stage_sound.java -- thêm stop method
+
+
 @update 16/11
 bomb.java --117 cho bomber đi qua, không cho quái đi qua
 bomber.java -- thêm sound put boom
