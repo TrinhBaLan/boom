@@ -1,3 +1,6 @@
+@update 26/11
+  up lại file 
+
 @update 17/11
 
 game.java  board.java -- thêm ending frame
